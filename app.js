@@ -1,10 +1,11 @@
+require("dotenv").config();
 const path = require("node:path");
 const express = require('express');
 const app = express();
 const indexRouter = require("./src/routes/indexRouter");
 const messageRouter = require("./src/routes/newMessageRouter");
 
-const PORT = 3000;
+const PORT = process.env.PORT;
 
 // Set up EJS as the view engine
 app.set("views", path.join(__dirname, "src/views"));
