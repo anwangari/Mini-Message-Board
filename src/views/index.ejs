@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/styles/styles.css">
+</head>
+<body>
+    <h1><%= title %></h1>
+    <a href="/new" class="add-message-btn">Add New Message</a>
+    
+    <% if (messages.length === 0) { %>
+        <p>No messages yet. Be the first to add one!</p>
+    <% } else { %>
+        <% messages.forEach((message, index) => { %>
+            <div class="message">
+                <div class="message-user"><%= message.user %></div>
+                <div class="message-text"><%= message.text %></div>
+                <div class="message-date"><%= message.added.toLocaleString() %></div>
+                <a href="/message/<%= index %>" class="open-btn">Open</a>
+            </div>
+        <% }); %>
+    <% } %>
+</body>
+</html>
