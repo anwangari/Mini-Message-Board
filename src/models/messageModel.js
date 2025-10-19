@@ -1,43 +1,54 @@
-// In-memory data store for messages
-const messages = [
-    {
-      text: "Hi there!",
-      user: "Amando",
-      added: new Date()
-    },
-    {
-      text: "Hello World!",
-      user: "Charles",
-      added: new Date()
-    }
-];
+// Message model with PostgreSQL database integration
+// src/models/messageModel.js
+
+const db = require('./db/queries');
 
 // Get all messages
-exports.getAllMessages = () => {
-    return messages;
+exports.getAllMessages = async () => {
+    try {
+        return await db.getAllMessages();
+    } catch (error) {
+        console.error('Error getting all messages:', error);
+        throw error;
+    }
 };
 
-// Get a single message by index
-exports.getMessageById = (id) => {
-    const messageId = parseInt(id);
-    if (messageId >= 0 && messageId < messages.length) {
-        return messages[messageId];
+// Get a single message by ID
+exports.getMessageById = async (id) => {
+    try {
+        return await db.getMessageById(id);
+    } catch (error) {
+        console.error('Error getting message by ID:', error);
+        throw error;
     }
-    return null;
 };
 
 // Create a new message
-exports.createMessage = (text, user) => {
-    const newMessage = {
-        text: text,
-        user: user,
-        added: new Date()
-    };
-    messages.push(newMessage);
-    return newMessage;
+exports.createMessage = async (text, user) => {
+    try {
+        return await db.createMessage(user, text);
+    } catch (error) {
+        console.error('Error creating message:', error);
+        throw error;
+    }
 };
 
 // Get total message count
-exports.getMessageCount = () => {
-    return messages.length;
+exports.getMessageCount = async () => {
+    try {
+        return await db.getMessageCount();
+    } catch (error) {
+        console.error('Error getting message count:', error);
+        throw error;
+    }
+};
+
+// Delete a message
+exports.deleteMessage = async (id) => {
+    try {
+        return await db.deleteMessage(id);
+    } catch (error) {
+        console.error('Error deleting message:', error);
+        throw error;
+    }
 };

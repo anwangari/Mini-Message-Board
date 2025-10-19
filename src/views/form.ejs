@@ -8,6 +8,13 @@
 </head>
 <body>
     <h1><%= title %></h1>
+    
+    <% if (typeof error !== 'undefined' && error) { %>
+        <div class="error-message">
+            <%= error %>
+        </div>
+    <% } %>
+    
     <form method="POST" action="/new">
         <label for="messageUser">Your Name:</label>
         <input type="text" id="messageUser" name="messageUser" required>
