@@ -1,83 +1,179 @@
-/* General Body Styles */
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    max-width: 800px;
-    margin: 0 auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #304d24; /*linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+    min-height: 100vh;
     padding: 20px;
-    background-color: #f5f5f5;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 h1 {
-    color: #333;
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
 }
 
-/* Index Page - Messages List */
+/* Header Section */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Add Message Button */
 .add-message-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background-color: white;
+    color: #667eea;
     text-decoration: none;
-    border-radius: 5px;
-    margin-bottom: 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .add-message-btn:hover {
-    background-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    background-color: #f8f9fa;
 }
 
-.message {
+/* Empty State */
+.empty-state {
     background-color: white;
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 60px 20px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.message-user {
-    font-weight: bold;
-    color: #2196F3;
-}
-
-.message-text {
-    margin: 10px 0;
-    color: #333;
-}
-
-.message-date {
-    font-size: 0.85em;
+.empty-state p {
+    font-size: 1.2rem;
     color: #666;
 }
 
+/* Messages Grid */
+.messages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 24px;
+    margin-top: 20px;
+}
+
+/* Message Card */
+.message-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.message-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Card Header */
+.card-header {
+    padding: 16px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.message-user {
+    font-weight: 600;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.message-date {
+    font-size: 0.85rem;
+    opacity: 0.9;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Card Body */
+.card-body {
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.message-text {
+    color: #333;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+/* Card Footer */
+.card-footer {
+    padding: 16px 20px;
+    border-top: 1px solid #e9ecef;
+    display: flex;
+    justify-content: flex-end;
+}
+
 .open-btn {
-    display: inline-block;
-    padding: 5px 15px;
-    background-color: #2196F3;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background-color: #667eea;
     color: white;
     text-decoration: none;
-    border-radius: 3px;
-    font-size: 0.9em;
-    margin-top: 10px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
 }
 
 .open-btn:hover {
-    background-color: #0b7dda;
+    background-color: #5568d3;
+    transform: translateX(2px);
 }
 
 /* Form Page */
 form {
     background-color: white;
     padding: 30px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     max-width: 600px;
+    margin: 0 auto;
 }
 
 .error-message {
     background-color: #ffebee;
     color: #c62828;
     padding: 12px 16px;
-    border-radius: 4px;
+    border-radius: 8px;
     border-left: 4px solid #c62828;
     margin-bottom: 20px;
     font-size: 0.95em;
@@ -85,108 +181,121 @@ form {
 
 label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     color: #333;
-    font-weight: bold;
+    font-weight: 600;
+    font-size: 0.95rem;
 }
 
 input[type="text"],
 textarea {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: #667eea;
 }
 
 textarea {
-    min-height: 100px;
+    min-height: 120px;
     resize: vertical;
 }
 
 button {
-    background-color: #4CAF50;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
     padding: 12px 30px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    width: 100%;
 }
 
 button:hover {
-    background-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
 }
 
 /* Message Detail Page */
 .message-detail {
     background-color: white;
-    padding: 30px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .detail-row {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .detail-label {
-    font-weight: bold;
-    color: #666;
-    font-size: 0.9em;
+    font-weight: 600;
+    color: #667eea;
+    font-size: 0.85rem;
     text-transform: uppercase;
-    margin-bottom: 5px;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
 }
 
 .detail-value {
-    font-size: 1.1em;
+    font-size: 1.2rem;
     color: #333;
 }
 
 .message-text-detail {
-    font-size: 1.2em;
-    line-height: 1.6;
-    padding: 15px;
-    background-color: #f9f9f9;
-    border-left: 4px solid #2196F3;
-    margin: 20px 0;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-left: 4px solid #667eea;
+    border-radius: 8px;
+    color: #333;
 }
 
 /* Back Links */
 .back-link {
-    display: inline-block;
-    margin-top: 15px;
-    color: #2196F3;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: white;
+    color: #667eea;
     text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .back-link:hover {
-    text-decoration: underline;
-}
-
-/* Back link on message detail page */
-.message-detail ~ .back-link {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #2196F3;
-    color: white;
-    border-radius: 5px;
-}
-
-.message-detail ~ .back-link:hover {
-    background-color: #0b7dda;
-    text-decoration: none;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* Error Page */
 .error-container {
     background-color: white;
-    padding: 30px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    margin: 20px 0;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 40px auto;
+    max-width: 600px;
+    text-align: center;
 }
 
 .error-message {
@@ -198,4 +307,25 @@ button:hover {
 .error-status {
     color: #666;
     font-size: 0.9em;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .messages-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .message-detail,
+    form {
+        padding: 20px;
+    }
 }

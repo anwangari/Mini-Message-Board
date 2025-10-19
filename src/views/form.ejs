@@ -7,23 +7,28 @@
     <link rel="stylesheet" href="/styles/styles.css">
 </head>
 <body>
-    <h1><%= title %></h1>
-    
-    <% if (typeof error !== 'undefined' && error) { %>
-        <div class="error-message">
-            <%= error %>
+    <div class="container">
+        <h1 style="text-align: center; margin-bottom: 30px;"><%= title %></h1>
+        
+        <% if (typeof error !== 'undefined' && error) { %>
+            <div class="error-message" style="max-width: 600px; margin: 0 auto 20px;">
+                <%= error %>
+            </div>
+        <% } %>
+        
+        <form method="POST" action="/new">
+            <label for="messageUser">Your Name:</label>
+            <input type="text" id="messageUser" name="messageUser" required placeholder="Enter your name">
+            
+            <label for="messageText">Message:</label>
+            <textarea id="messageText" name="messageText" required placeholder="What's on your mind?"></textarea>
+            
+            <button type="submit">Submit Message</button>
+        </form>
+        
+        <div style="text-align: center;">
+            <a href="/" class="back-link">← Back to Messages</a>
         </div>
-    <% } %>
-    
-    <form method="POST" action="/new">
-        <label for="messageUser">Your Name:</label>
-        <input type="text" id="messageUser" name="messageUser" required>
-        
-        <label for="messageText">Message:</label>
-        <textarea id="messageText" name="messageText" required></textarea>
-        
-        <button type="submit">Submit Message</button>
-    </form>
-    <a href="/" class="back-link">← Back to Messages</a>
+    </div>
 </body>
 </html>

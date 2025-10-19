@@ -7,20 +7,51 @@
     <link rel="stylesheet" href="/styles/styles.css">
 </head>
 <body>
-    <h1><%= title %></h1>
-    <a href="/new" class="add-message-btn">Add New Message</a>
-    
-    <% if (messages.length === 0) { %>
-        <p>No messages yet. Be the first to add one!</p>
-    <% } else { %>
-        <% messages.forEach((message, index) => { %>
-            <div class="message">
-                <div class="message-user"><%= message.user %></div>
-                <div class="message-text"><%= message.text %></div>
-                <div class="message-date"><%= new Date(message.timestamp).toLocaleString() %></div>
-                <a href="/message/<%= message.message_id %>" class="open-btn">Open</a>
+    <div class="container">
+        <header class="page-header">
+            <h1><%= title %></h1>
+            <a href="/new" class="add-message-btn">+ Add New Message</a>
+        </header>
+        
+        <% if (messages.length === 0) { %>
+            <div class="empty-state">
+                <p>No messages yet. Be the first to add one!</p>
             </div>
-        <% }); %>
-    <% } %>
+        <% } else { %>
+            <div class="messages-grid">
+                <% messages.forEach((message) => { %>
+                    <div class="message-card">
+                        <div class="card-header">
+                            <div class="message-user">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="8" r="4"/>
+                                    <path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/>
+                                </svg>
+                                <%= message.user || message["user"] %>
+                            </div>
+                            <div class="message-date">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 6v6l4 2"/>
+                                </svg>
+                                <%= new Date(message.timestamp).toLocaleDateString() %>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <p class="message-text"><%= message.text %></p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="/message/<%= message.message_id %>" class="open-btn">
+                                Read More
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        <% } %>
+    </div>
 </body>
 </html>
